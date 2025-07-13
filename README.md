@@ -33,6 +33,9 @@ python run_tests.py --tags @smoke
 - [⚙️ Setup Guide](#️-setup-guide)
 - [🧪 Running Tests](#-running-tests)
 - [📊 Reporting](#-reporting)
+- [🏷️ Tag Filtering](#tag-filtering)
+- [�� Code Organization](#code-organization)
+- [📄 Log Files](#log-files)
 
 ---
 
@@ -270,7 +273,8 @@ reports/
 3. **Use Playwright's `expect()`** - Reliable assertions
 4. **Create reusable page methods** - Reduce code duplication
 
-### Tag Filtering
+--- 
+## Tag Filtering
 
 Available tags in the framework:
 
