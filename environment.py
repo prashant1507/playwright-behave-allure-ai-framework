@@ -26,7 +26,7 @@ def build_url(base_url, path=""):
 def get_browser_config():
     """Get browser configuration from environment variables (BROWSER and HEADLESS)."""
     browser_type = os.getenv("BROWSER", "chromium").lower()
-    headless_env = bool(os.getenv("HEADLESS", "").lower())
+    headless_env = os.getenv("HEADLESS", "False").lower()
     headless = headless_env in ["true", "1", "yes", "on"]
     return browser_type, headless
 
@@ -41,9 +41,6 @@ def before_all(context):
     # Initialize page factory
     from pages.page_factory import PageFactory
     context.page_factory = PageFactory()
-
-    # Log browser startup
-    log_info(f"Browser {browser_type} started (headless: {headless}) | Base URL: {context.base_url}")
 
 def after_all(context):
     context.browser_manager.stop()
