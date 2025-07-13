@@ -1,0 +1,8 @@
+- report
+- parallel execution
+- multi browsers
+- headless
+- POM 
+- playwright assert
+- validate each step of ReadMe
+- ReadME 
