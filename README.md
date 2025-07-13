@@ -33,10 +33,6 @@ python run_tests.py --tags @smoke
 - [⚙️ Setup Guide](#️-setup-guide)
 - [🧪 Running Tests](#-running-tests)
 - [📊 Reporting](#-reporting)
-- [🏗️ Page Object Model](#️-page-object-model)
-- [🚀 Advanced Features](#-advanced-features)
-- [🎯 Best Practices](#-best-practices)
-- [🔧 Troubleshooting](#-troubleshooting)
 
 ---
 
@@ -274,9 +270,7 @@ reports/
 3. **Use Playwright's `expect()`** - Reliable assertions
 4. **Create reusable page methods** - Reduce code duplication
 
----
-
-## Tag Filtering
+### Tag Filtering
 
 Available tags in the framework:
 
