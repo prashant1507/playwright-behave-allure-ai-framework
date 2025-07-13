@@ -11,8 +11,8 @@ A powerful, scalable automation framework combining **Playwright** for browser a
 
 ```bash
 # Clone and setup
-git clone <repository>
-cd <project-directory>
+git clone https://github.com/prashant1507/playwright-behave-allure-framework.git
+cd playwright-behave-allure-framework/
 
 # Install dependencies
 pip install -r requirements.txt
