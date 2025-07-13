@@ -1,0 +1,109 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Thumbs.db:encryptable
+Desktop.ini
+$RECYCLE.BIN/
+
+
+# Test Reports and Artifacts
+reports/
+
+# Configuration Files with Sensitive Data
+.env.local
+.env.production
+.env.staging
+
+# Coverage Reports
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+cover/
+
+# Package Management
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+build/
+dist/
+*.manifest
+*.spec
+
+# Testing
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+/site
+
+# Type Checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Jupyter
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+# Package Managers
+.python-version
+Pipfile.lock
+poetry.lock
+pdm.lock
+.pdm.toml
+__pypackages__/
+
+# Other
+*.mo
+*.pot
+celerybeat-schedule
+celerybeat.pid
+*.sage.py
+.spyderproject
+.spyproject
+.ropeproject
+cython_debug/ 
