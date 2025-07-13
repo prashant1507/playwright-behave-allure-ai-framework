@@ -1,7 +1,7 @@
 import os
 import yaml
 from playwright_config.browser_setup import BrowserManager
-from utils.logger import log_failure, log_warning, log_info
+from utils.logger import log_failure, log_warning
 
 def load_config():
     """Load configuration from config.yaml"""
