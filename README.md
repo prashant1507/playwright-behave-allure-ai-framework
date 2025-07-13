@@ -29,7 +29,6 @@ python run_tests.py --tags @smoke
 
 - [✨ Key Features](#-key-features)
 - [🏗️ Architecture](#️-architecture)
-- [📦 Project Structure](#-project-structure)
 - [⚙️ Setup Guide](#️-setup-guide)
 - [🧪 Running Tests](#-running-tests)
 - [📊 Reporting](#-reporting)
@@ -66,44 +65,6 @@ python run_tests.py --tags @smoke
 │   Behave        │    │   Playwright    │    │   Allure        │
 │   (BDD Engine)  │    │   (Browser)     │    │   (Reporting)   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-```
-
----
-
-## 📦 Project Structure
-
-```
-project-root/
-├── 📁 features/                  # Gherkin feature files
-│   ├── login.feature             # Login functionality tests
-│   ├── ...
-│
-├── 📁 steps/                     # Behave step definitions
-│   ├── login_steps.py            # Login step implementations
-│   ├── ...
-│
-├── 📁 pages/                     # Page Object Model
-│   ├── __init__.py               # Package initialization
-│   ├── base_page.py              # Base page with common methods
-│   ├── test_page.py              # Test page interactions
-│   ├── page_factory.py           # Page object factory
-│   └── ...
-│
-├── 📁 playwright_config/         # Playwright configuration
-│   └── browser_setup.py          # Browser setup and management
-│
-├── 📁 reports/                   # Test reports and artifacts
-│   ├── allure-results/           # Allure report data
-│   ├── screenshots/              # Failure screenshots
-│   └── workers/                  # Parallel execution logs
-│
-├── ⚙️ environment.py             # Behave hooks and setup
-├── ⚙️ behave.ini                 # Behave configuration
-├── ⚙️ config.yaml                # Application configuration
-├── 🚀 run_tests.py               # Enhanced test runner
-├── 📋 requirements.txt           # Python dependencies
-├── 📋 .gitignore                 # Git ignore rules
-└── 📖 README.md                  # This file
 ```
 
 ---
