@@ -40,15 +40,15 @@ python run_tests.py --tags @smoke
 
 ## ✨ Key Features
 
-| Feature                       | Description                                                | Benefits                                        |
-|-------------------------------|------------------------------------------------------------|-------------------------------------------------|
-| 🏗️ **Page Object Model**     | Centralized element selectors and reusable page methods    | Maintainable, scalable test structure           |
-| 🚀 **Parallel Execution**     | Multi-worker test execution with smart resource management | Faster test execution, efficient resource usage |
-| 🏷️ **Smart Tag Filtering**   | Filter tests by tags (`@smoke`, `@regression`, `@api`)     | Run only relevant tests, reduce execution time  |
-| 📊 **Enhanced Reporting**     | Allure integration with automatic screenshots              | Detailed HTML reports with failure analysis     |
-| ⚙️ **Flexible Configuration** | YAML config + environment variables + command-line args    | Easy configuration management                   |
-| 🌐 **Multi-Browser Support**  | Chromium, Firefox, WebKit support                          | Cross-browser testing capabilities              |
-| 🎯 **Clean Output**           | Filtered console output with organized reporting           | Reduced noise, better debugging                 |
+| Feature                       | Description                                             | Benefits                                        |
+|-------------------------------|---------------------------------------------------------|-------------------------------------------------|
+| 🏗️ **Page Object Model**     | Centralized element selectors and reusable page methods | Maintainable, scalable test structure           |
+| 🚀 **Parallel Execution**     | Multi-worker test execution feature-by-feature          | Faster test execution, efficient resource usage |
+| 🏷️ **Smart Tag Filtering**   | Filter tests by tags (`@smoke`, `@regression`, `@api`)  | Run only relevant tests, reduce execution time  |
+| 📊 **Enhanced Reporting**     | Allure integration with automatic screenshots           | Detailed HTML reports with failure analysis     |
+| ⚙️ **Flexible Configuration** | YAML config + environment variables + command-line args | Easy configuration management                   |
+| 🌐 **Multi-Browser Support**  | Chromium, Firefox, WebKit support                       | Cross-browser testing capabilities              |
+| 🎯 **Clean Output**           | Filtered console output with organized reporting        | Reduced noise, better debugging                 |
 
 ---
 
