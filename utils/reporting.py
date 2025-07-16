@@ -2,7 +2,7 @@ import os
 import shutil
 import subprocess
 
-from utils.logger import log_info_emoji
+from utils.logger import log_info_emoji, log_warning, log_failure
 
 
 def combine_allure_reports(report_dirs):
@@ -32,3 +32,25 @@ def server_report(args):
         subprocess.run(['allure', 'serve', 'reports/allure-results'])
     else:
         log_info_emoji("📊", "To view the report: allure serve reports/allure-results")
+
+def attach_screenshot(context, step):
+    try:
+        import allure
+        screenshots_dir = os.path.join("reports", "screenshots")
+        os.makedirs(screenshots_dir, exist_ok=True)
+        scenario_name = getattr(context, 'scenario', None)
+        scenario_name = scenario_name.name.replace(' ', '_').replace('/', '_') if scenario_name else 'unknown_scenario'
+        step_name = step.name.replace(' ', '_').replace('/', '_')
+
+        screenshot_path = os.path.join(screenshots_dir, f"screenshot_{scenario_name}_{step_name}.png")
+        context.page.screenshot(path=screenshot_path)
+        with open(screenshot_path, "rb") as image_file:
+            allure.attach(
+                image_file.read(),
+                name=f"screenshot_{scenario_name}_{step_name}",
+                attachment_type=allure.attachment_type.PNG
+            )
+    except ImportError:
+        log_warning("Allure not available, screenshot not attached to report.")
+    except Exception as e:
+        log_failure(f"Failed to attach screenshot to Allure: {e}")

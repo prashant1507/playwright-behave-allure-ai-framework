@@ -5,7 +5,7 @@ import multiprocessing
 from pathlib import Path
 
 from helpers.file_system import create_reports_structure
-from utils.prepration_utils import run_options
+from utils.prepration import run_options
 from utils.logger import (
     log_info, log_warning, log_success, log_failure,
     log_info_emoji
