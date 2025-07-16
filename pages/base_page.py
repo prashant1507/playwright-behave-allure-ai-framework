@@ -63,10 +63,6 @@ class BasePage:
         """Get text content of an element."""
         return self.page.text_content(selector)
     
-    def is_element_visible(self, selector: str) -> bool:
-        """Check if an element is visible."""
-        return self.page.is_visible(selector)
-    
     def get_page_text(self) -> str:
         """Get the page text content."""
         return self.page.content().lower() 
