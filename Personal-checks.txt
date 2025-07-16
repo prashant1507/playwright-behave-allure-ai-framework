@@ -5,4 +5,12 @@
 - POM 
 - playwright assert
 - validate each step of ReadMe
-- ReadME 
+- ReadME
+
+
+
+- Jenkins Integration
+- Email Integration
+- API
+- Mobile automation
+- Check why i need build_url
