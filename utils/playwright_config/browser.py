@@ -12,8 +12,9 @@ def get_browser_config():
     return browser_type, headless
 
 def set_browser(context):
+    enable_tracing = os.getenv('ENABLE_TRACING', 'false').lower() == 'true'
     browser_type, headless = get_browser_config()
-    context.browser_manager = BrowserManager(browser_type=browser_type, headless=headless)
+    context.browser_manager = BrowserManager(browser_type=browser_type, headless=headless, enable_tracing=enable_tracing)
     return context.browser_manager.start()
 
 def get_base_url():
