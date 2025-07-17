@@ -1,4 +1,4 @@
-from utils.browser import prepare_browser
+from utils.playwright_config.browser import prepare_browser
 from utils.logger import log_failure
 from utils.reporting import attach_screenshot
 

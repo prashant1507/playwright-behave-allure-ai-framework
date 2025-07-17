@@ -1,7 +1,7 @@
 import os
 
 from helpers.constants.framework_constants import CONFIG_YAML
-from playwright_config.browser_setup import BrowserManager
+from utils.playwright_config.browser_setup import BrowserManager
 from utils.misc import load_config
 
 
