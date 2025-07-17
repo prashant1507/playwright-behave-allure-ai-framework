@@ -4,6 +4,7 @@ import subprocess
 import multiprocessing
 from pathlib import Path
 
+from helpers.constants.framework_constants import TRACES_DIR
 from helpers.file_system import create_reports_structure
 from utils.prepration import run_options
 from utils.logger import (
@@ -180,6 +181,9 @@ def main():
 
     os.environ['BROWSER'] = args.browser
     log_info_emoji("🌐", f"Browser: {str(args.browser).capitalize()}")
+
+    if args.tracing:
+        log_info_emoji("�� ", f"Tracing Enabled | Trace files will be saved to {TRACES_DIR}")
 
     create_reports_structure()
 

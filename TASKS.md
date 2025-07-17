@@ -13,13 +13,6 @@ This document outlines the step-by-step tasks to implement the Python Automation
 - [x] Activate virtual environment
 - [x] Upgrade pip to latest version
 
-**Commands:**
-```bash
-python -m venv venv
-source venv/bin/activate  # macOS/Linux
-# or venv\Scripts\activate  # Windows
-pip install --upgrade pip
-```
 
 ### Task 1.2: Install Dependencies
 - [x] Install Playwright
@@ -29,26 +22,12 @@ pip install --upgrade pip
 - [x] Install PyYAML for configuration
 - [x] Remove BehaveX dependency (not needed)
 
-**Commands:**
-```bash
-pip install playwright behave allure-behave pyyaml
-playwright install
-```
 
 ### Task 1.3: Create Requirements File
 - [x] Create `requirements.txt` with all dependencies
 - [x] Verify all packages are listed correctly
 - [x] Remove unnecessary dependencies
 
-**File: `requirements.txt`**
-```
-playwright
-behave
-allure-behave
-requests
-psutil
-pyyaml
-```
 
 ---
 
@@ -60,6 +39,8 @@ pyyaml
 - [x] Create `pages/` directory for Page Object Model
 - [x] Create `playwright_config/` directory for browser setup
 - [x] Create `reports/` directory for Allure reports
+- [x] Create `helpers/` directory for utility functions
+- [x] Create `utils/` directory for framework utilities
 - [x] Ensure all directories exist and are properly organized
 
 ### Task 2.2: Configure Behave
@@ -67,13 +48,6 @@ pyyaml
 - [x] Set default tags to exclude skipped tests
 - [x] Configure output format
 
-**File: `behave.ini`**
-```ini
-[behave]
-default_tags = ~@skip
-show_skipped = false
-format = plain
-```
 
 ---
 
@@ -95,34 +69,6 @@ format = plain
 - [x] Add browser selection support via environment variables
 - [x] Integrate Page Object Model factory
 
-**File: `environment.py`**
-```python
-from playwright.sync_api import sync_playwright
-import os
-
-def before_all(context):
-    playwright = sync_playwright().start()
-    browser_type = os.getenv('BROWSER', 'chromium')
-    headless = os.getenv('HEADLESS', 'false').lower() == 'true'
-    
-    if browser_type == 'firefox':
-        context.browser = playwright.firefox.launch(headless=headless)
-    elif browser_type == 'webkit':
-        context.browser = playwright.webkit.launch(headless=headless)
-    else:
-        context.browser = playwright.chromium.launch(headless=headless)
-    
-    context.page = context.browser.new_page()
-    context.playwright = playwright
-    
-    # Initialize page factory for POM
-    from pages.page_factory import PageFactory
-    context.page_factory = PageFactory()
-
-def after_all(context):
-    context.browser.close()
-    context.playwright.stop()
-```
 
 ---
 
@@ -180,12 +126,6 @@ def after_all(context):
 - [x] Implement organized report folder structure
 - [x] Add automatic report folder creation
 
-**Commands:**
-```bash
-behave -f allure_behave.formatter:AllureFormatter -o reports/ features/
-allure serve reports/
-```
-
 ---
 
 ## 🧪 Phase 6: Testing and Validation
@@ -202,12 +142,6 @@ allure serve reports/
 - [x] Test running specific tagged scenarios
 - [x] Verify tag filtering works correctly
 - [x] Implement tag support in test runner
-
-**Example:**
-```bash
-behave -t @smoke
-python run_tests.py --tags @smoke
-```
 
 ### Task 6.3: Allure Report Validation
 - [x] Run tests with Allure formatter
@@ -263,6 +197,7 @@ python run_tests.py --tags @smoke
 - [x] Remove browser and headless configuration from config file
 - [x] Keep browser and headless mode via command line only
 - [x] Test configuration loading and URL building
+- [x] Create basic framework constants system
 
 ### Task 7.6: Test Runner Enhancements
 - [x] Create comprehensive test runner script (`run_tests.py`)
@@ -286,6 +221,7 @@ python run_tests.py --tags @smoke
 - [ ] Configure test execution steps
 - [ ] Add Allure report publishing
 - [ ] Test CI/CD pipeline
+- [ ] Test Jenkins support
 
 ### Task 8.2: GitLab CI Setup
 - [ ] Create `.gitlab-ci.yml` file
@@ -425,18 +361,21 @@ python run_tests.py --browser firefox --headless
 - ✅ **Tag Filtering**: Run specific test categories efficiently
 - ✅ **Allure Reporting**: Comprehensive test reports
 - ✅ **Screenshot Capture**: On test failures
-- ✅ **Configuration Management**: YAML-based config
+- ✅ **Configuration Management**: YAML-based config with basic constants
 - ✅ **Clean Output**: Filtered console output
 - ✅ **Failing Scenarios Display**: Clear failure summary
 - ✅ **Organized Reports**: Structured report folders
 - ✅ **Smart Worker Count**: Accurate display of workers used
+- ✅ **7 Feature Files**: Comprehensive test coverage
+- ✅ **8 Step Definition Files**: Complete step implementation
+- ✅ **4 Page Object Files**: Well-organized POM structure
 
 ---
 
 ## 🚀 Next Steps
 
 After completing all tasks:
-1. ✅ Add more test scenarios (10+ scenarios implemented)
+1. ✅ Add more test scenarios (7 scenarios implemented)
 2. [ ] Implement data-driven testing
 3. ✅ Add API testing capabilities
 4. [ ] Integrate with test management tools
@@ -444,8 +383,10 @@ After completing all tasks:
 6. ✅ Optimize test execution performance
 7. [ ] Add visual regression testing
 8. [ ] Implement mobile testing support
-9. [ ] Add performance testing capabilities
+9. ✅ Add performance testing capabilities
 10. [ ] Create test data management system
 11. ✅ Implement Page Object Model (POM)
 12. ✅ Remove unnecessary dependencies (BehaveX)
-13. ✅ Optimize parallel execution with tag filtering 
+13. ✅ Optimize parallel execution with tag filtering
+14. [ ] Enhance framework constants system
+15. [ ] Add more comprehensive configuration options 
