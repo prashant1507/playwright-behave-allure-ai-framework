@@ -17,6 +17,7 @@ def run_options():
       python run_tests.py --tags @smoke                # Run only smoke tests
       python run_tests.py --tags @smoke @regression    # Run smoke and regression tests
       python run_tests.py --serve-report               # Serve Allure report after tests
+      python run_tests.py --tracing                    # Enable Playwright tracing
         """
     )
 
@@ -49,6 +50,12 @@ def run_options():
         '--tags',
         nargs='+',
         help='Tags to filter tests (e.g., @smoke @regression)'
+    )
+
+    parser.add_argument(
+        '--tracing',
+        action='store_true',
+        help='Enable Playwright tracing (saves trace files)'
     )
 
     parser.add_argument(

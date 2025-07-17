@@ -19,6 +19,9 @@ cd playwright-behave-allure-framework/
 pip install -r requirements.txt
 playwright install
 
+# Install node for checking tracing
+brew install node
+
 # Run your first test
 python run_tests.py --tags @smoke
 ```
@@ -34,6 +37,7 @@ python run_tests.py --tags @smoke
 - [📊 Reporting](#-reporting)
 - [🏷️ Tag Filtering](#tag-filtering)
 - [�� Code Organization](#code-organization)
+- [🔍 Investigate Tracing](#investigate-tracing)
 - [📄 Log Files](#log-files)
 
 ---
@@ -151,6 +155,9 @@ python run_tests.py features/login.feature features/forms.feature
 # Run tagged tests
 python run_tests.py --tags @smoke
 python run_tests.py --tags @regression
+
+# Run with tracing
+python run_tests.py --tracing
 ```
 
 ### Parallel Execution
@@ -280,12 +287,23 @@ python run_tests.py --parallel --tags @api
 
 ---
 
+### Investigate Tracing
+```bash
+# Install Playwright trace viewer
+npx playwright show-trace reports/traces/FILE_NAME.zip
+
+# Or use the web interface
+npx playwright show-trace --host 0.0.0.0 --port 8080 reports/traces/FILE_NAME.zip
+```
+---
+
 ### Log Files
 
 Check log files for detailed error information:
 
 - `reports/test.log` - Detailed test execution logs
 - `reports/workers/` - Parallel execution logs
+- `reports/traces/` - Tracing reports
 
 ---
 
