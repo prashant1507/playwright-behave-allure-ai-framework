@@ -1,12 +1,12 @@
-# Python Automation Framework with Playwright + Behave + Allure
+# Python Automation Framework with Playwright + Behave + Allure + AI
 
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
 [![Playwright](https://img.shields.io/badge/Playwright-Latest-green.svg)](https://playwright.dev)
 [![Behave](https://img.shields.io/badge/Behave-Latest-orange.svg)](https://behave.readthedocs.io)
 [![Allure](https://img.shields.io/badge/Allure-Latest-red.svg)](https://docs.qameta.io/allure/)
+[![AI](https://img.shields.io/badge/AI-Ollama-purple.svg)](https://ollama.ai)
 
-A powerful, scalable automation framework combining **Playwright** for browser automation, **Behave** for BDD testing, *
-*Allure** for reporting, and **Page Object Model** for maintainable test structure.
+A powerful, scalable automation framework combining **Playwright** for browser automation, **Behave** for BDD testing, **Allure** for reporting, **Page Object Model** for maintainable test structure, and **AI-powered selector healing** for robust test automation.
 
 ## 🚀 Quick Start
 
@@ -32,11 +32,12 @@ python run_tests.py --tags @smoke
 
 - [✨ Key Features](#-key-features)
 - [🏗️ Architecture](#️-architecture)
+- [🧠 AI Selector Healing](#-ai-selector-healing)
 - [⚙️ Setup Guide](#️-setup-guide)
 - [🧪 Running Tests](#-running-tests)
 - [📊 Reporting](#-reporting)
 - [🏷️ Tag Filtering](#tag-filtering)
-- [�� Code Organization](#code-organization)
+- [ Code Organization](#code-organization)
 - [🔍 Investigate Tracing](#investigate-tracing)
 - [📄 Log Files](#log-files)
 
@@ -46,6 +47,7 @@ python run_tests.py --tags @smoke
 
 | Feature                       | Description                                             | Benefits                                        |
 |-------------------------------|---------------------------------------------------------|-------------------------------------------------|
+| 🧠 **AI Selector Healing**    | AI-powered selector recovery using Ollama              | Self-healing tests, reduced maintenance         |
 | 🏗️ **Page Object Model**     | Centralized element selectors and reusable page methods | Maintainable, scalable test structure           |
 | 🚀 **Parallel Execution**     | Multi-worker test execution feature-by-feature          | Faster test execution, efficient resource usage |
 | 🏷️ **Smart Tag Filtering**   | Filter tests by tags (`@smoke`, `@regression`, `@api`)  | Run only relevant tests, reduce execution time  |
@@ -69,7 +71,57 @@ python run_tests.py --tags @smoke
 │   Behave        │    │   Playwright    │    │   Allure        │
 │   (BDD Engine)  │    │   (Browser)     │    │   (Reporting)   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   AI Selector   │    │   Ollama        │    │   Selector      │
+│   Healer        │◀──▶│   (AI Model)    │───▶│   Map Cache     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
+
+---
+
+## 🧠 AI Selector Healing
+
+The framework includes an intelligent **AI-powered selector healing system** that automatically recovers from selector failures using the **Ollama AI model**.
+
+### How It Works
+
+1. **Automatic Detection**: When a selector fails (throws exception), the system automatically triggers AI healing
+2. **Context Capture**: Captures current page screenshot and HTML content
+3. **AI Analysis**: Uses Ollama (`devstral:24b` model) to analyze the page and suggest new selectors
+4. **Validation**: Validates AI-suggested selectors before using them
+5. **Learning**: Maintains a `selector_map.json` file for future reference
+
+### Features
+
+- **🧠 Intelligent Recovery**: AI analyzes page structure and suggests optimal selectors
+- **📸 Visual Analysis**: Uses screenshots for better element identification
+- **🎯 Confidence Scoring**: AI provides confidence levels for suggested selectors
+- **📚 Historical Learning**: Maintains selector mapping for reuse and learning
+- **🔍 Multiple Selector Types**: Supports XPath, CSS, and text-based selectors
+- **⚡ Automatic Integration**: Seamlessly integrated into Page Object Model
+
+### Example Usage
+
+```python
+# In base_page.py - Automatic AI healing
+def fill_input(self, selector: str, value: str):
+    try:
+        self.page.locator(selector).wait_for(timeout=5000)
+        self.page.fill(selector, value)
+    except playwright.sync_api.TimeoutError:
+        # AI healing automatically triggered
+        locator = ai_selector_healing(context=self.context, text=selector)
+        locator.fill(value)
+```
+### Benefits
+
+- **🔄 Self-Healing Tests**: Tests automatically recover from selector changes
+- **📉 Reduced Maintenance**: Less manual selector updates required
+- **🎯 Higher Reliability**: AI suggests robust, context-aware selectors
+- **📚 Continuous Learning**: Improves over time with historical data
+- **⚡ Faster Development**: Reduces debugging time for selector issues
 
 ---
 
@@ -80,6 +132,7 @@ python run_tests.py --tags @smoke
 - **Python 3.12+**
 - **Git** (for version control)
 - **Allure** (for reporting)
+- **Ollama** (for AI models)
 
 ### 2. Environment Setup
 
@@ -122,7 +175,17 @@ sudo apt-get update
 sudo apt-get install allure
 ```
 
-### 5. Configuration
+### 5. Install Ollama (Required for AI Selector Healing)
+
+```bash
+# Install Ollama
+https://ollama.ai/
+
+# Pull the required model
+ollama pull devstral:24b
+```
+
+### 6. Configuration
 
 #### Set URL in [Config.yaml](resources/config.yaml):
 
@@ -132,12 +195,23 @@ base_url: https://httpbin.org
 
 **Important:** The `base_url` is **required** in `config.yaml`. The framework will raise an error if it's missing.
 
-### 6. Verify Installation
+#### AI Selector Healing Configuration
+
+The AI selector healing system is automatically configured and ready to use. It will:
+
+- Create `selector_map.json` for historical selector mapping
+- Generate `selector_log.json` for AI interaction logs
+- Capture screenshots in `reports/screenshots/` for AI analysis
+- Use the `devstral:24b` Ollama model by default
+
+### 7. Verify Installation
 
 ```bash
 # Run a quick test
 python run_tests.py --tags @smoke --headless
 ```
+
+**Note:** The AI selector healing will automatically activate when selectors fail. You can monitor AI interactions in the console output and check the generated logs.
 
 ---
 
@@ -305,6 +379,15 @@ Check log files for detailed error information:
 - `reports/workers/` - Parallel execution logs
 - `reports/traces/` - Tracing reports
 
+### AI Selector Healing Logs
+
+Monitor AI selector healing activities:
+
+- `selector_map.json` - Historical selector mappings and AI suggestions
+- `selector_log.json` - Detailed AI interaction logs with confidence scores
+- `reports/screenshots/ai-*.png` - Screenshots captured for AI analysis
+- Console output - Real-time AI healing notifications with emojis
+
 ---
 
-*Built with ❤️ using Python, Playwright, Behave, and Allure*
+*Built with ❤️ using Python, Playwright, Behave, Allure, and AI-powered selector healing*
