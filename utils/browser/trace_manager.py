@@ -44,23 +44,3 @@ class TraceManager:
                 if not os.listdir(dir_path):
                     os.rmdir(dir_path)
                     log_info(f"Removed empty directory: {dir_path}")
-
-    def get_trace_summary(self):
-        trace_files = [f for f in os.listdir(self.traces_dir) if f.endswith('.zip')]
-        video_files = [f for f in os.listdir(f"{self.traces_dir}/videos") if f.endswith('.webm')]
-        har_files = [f for f in os.listdir(f"{self.traces_dir}/har") if f.endswith('.har')]
-
-        return {
-            'trace_files': len(trace_files),
-            'video_files': len(video_files),
-            'har_files': len(har_files),
-            'total_size_mb': get_directory_size_mb(self.traces_dir)
-        }
-
-def get_directory_size_mb(directory):
-    total_size = 0
-    for dirpath, dirnames, filenames in os.walk(directory):
-        for filename in filenames:
-            file_path = os.path.join(dirpath, filename)
-            total_size += os.path.getsize(file_path)
-    return round(total_size / (1024 * 1024), 2)

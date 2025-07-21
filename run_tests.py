@@ -4,7 +4,7 @@ import subprocess
 import multiprocessing
 from pathlib import Path
 
-from helpers.constants.framework_constants import TRACES_DIR
+from helpers.constants.framework_constants import TRACES_DIR, ALLURE_RESULTS_DIR
 from helpers.file_system import create_reports_structure
 from utils.prepration import run_options
 from utils.logger import (
@@ -149,7 +149,7 @@ def run_behave_command(args):
     cmd = [sys.executable, '-m', 'behave']
 
     # Add formatter for Allure reporting
-    cmd.extend(['-f', 'allure_behave.formatter:AllureFormatter', '-o', 'reports/allure-results'])
+    cmd.extend(['-f', 'allure_behave.formatter:AllureFormatter', '-o', ALLURE_RESULTS_DIR])
 
     # Add feature files if specified
     if args.features:

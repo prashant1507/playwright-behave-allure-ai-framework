@@ -1,14 +1,15 @@
 import os
 
+from helpers.constants.framework_constants import SCREENSHOTS_DIR, REPORTS, WORKER_DIR, ALLURE_RESULTS_DIR
 from utils.logger import log_info_emoji
 
 
 def create_reports_structure():
     folders = [
-        "reports",
-        "reports/screenshots",
-        "reports/workers",
-        "reports/allure-results"
+        REPORTS,
+        SCREENSHOTS_DIR,
+        WORKER_DIR,
+        ALLURE_RESULTS_DIR
     ]
 
     for folder in folders:

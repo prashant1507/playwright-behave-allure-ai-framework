@@ -4,3 +4,4 @@ allure-behave
 requests~=2.32.4
 psutil~=7.0.0
 pyyaml~=6.0.2
+ollama
