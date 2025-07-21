@@ -307,6 +307,7 @@ reports/
 │   └── *.xml                # Test metadata
 ├── screenshots/             # Failure screenshots
 │   └── screenshot_*.png     # Automatic screenshots
+│   └── ai-*.png             # AI screenshots
 └── workers/                 # Parallel execution logs
     └── worker_*.log         # Worker-specific logs
 ```
