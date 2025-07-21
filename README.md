@@ -37,7 +37,7 @@ python run_tests.py --tags @smoke
 - [🧪 Running Tests](#-running-tests)
 - [📊 Reporting](#-reporting)
 - [🏷️ Tag Filtering](#tag-filtering)
-- [ Code Organization](#code-organization)
+- [⚙️ Code Organization](#code-organization)
 - [🔍 Investigate Tracing](#investigate-tracing)
 - [📄 Log Files](#log-files)
 
@@ -123,7 +123,7 @@ def fill_input(self, selector: str, value: str):
 - **📚 Continuous Learning**: Improves over time with historical data
 - **⚡ Faster Development**: Reduces debugging time for selector issues
 
-### Note
+### Notes
 - AI method is ready, requires user to adjust base_page.py functions
 
 ---
@@ -139,7 +139,7 @@ def fill_input(self, selector: str, value: str):
 
 ### 2. Environment Setup
 
-```bash
+```
 # Create virtual environment
 python -m venv venv
 
@@ -151,11 +151,7 @@ venv\Scripts\activate
 
 # Upgrade pip
 pip install --upgrade pip
-```
 
-### 3. Install Dependencies
-
-```bash
 # Install Python packages
 pip install -r requirements.txt
 
@@ -163,9 +159,9 @@ pip install -r requirements.txt
 playwright install
 ```
 
-### 4. Install Allure (Optional)
+### 3. Install Allure
 
-```bash
+```
 # macOS (using Homebrew)
 brew install allure
 
@@ -178,9 +174,9 @@ sudo apt-get update
 sudo apt-get install allure
 ```
 
-### 5. Install Ollama (Required for AI Selector Healing)
+### 4. Install Ollama (Required for AI Selector Healing)
 
-```bash
+```
 # Install Ollama
 https://ollama.ai/
 
@@ -188,7 +184,7 @@ https://ollama.ai/
 ollama pull devstral:24b
 ```
 
-### 6. Configuration
+### 5. Configuration
 
 #### Set URL in [Config.yaml](resources/config.yaml):
 
@@ -198,13 +194,13 @@ base_url: https://httpbin.org
 
 **Important:** The `base_url` is **required** in `config.yaml`. The framework will raise an error if it's missing.
 
-#### AI Selector Healing Configuration
+### 6. AI Selector Healing Configuration
 
 The AI selector healing system is automatically configured and ready to use. It will:
 
 - Create `selector_map.json` for historical selector mapping
 - Generate `selector_log.json` for AI interaction logs
-- Capture screenshots in `reports/screenshots/` for AI analysis
+- Capture screenshots in `reports/screenshots/ai-*.png` for AI analysis
 - Use the `devstral:24b` Ollama model by default
 
 ### 7. Verify Installation
@@ -220,6 +216,11 @@ python run_tests.py --tags @smoke --headless
 
 ## 🧪 Running Tests
 
+### Check Script Usage
+```bash
+    python3 run_tests.py --help
+```
+
 ### Basic Test Execution
 
 ```bash
@@ -231,38 +232,15 @@ python run_tests.py features/login.feature features/forms.feature
 
 # Run tagged tests
 python run_tests.py --tags @smoke
-python run_tests.py --tags @regression
 
 # Run with tracing
 python run_tests.py --tracing
-```
 
-### Parallel Execution
-
-```bash
 # Run with optimal worker count
 python run_tests.py --parallel
 
-# Run with custom workers
-python run_tests.py --parallel --workers 4
-
-# Run tagged tests in parallel
-python run_tests.py --parallel --tags @smoke @regression
+# and so on
 ```
-
-### Browser Options
-
-```bash
-# Different browsers
-python run_tests.py --browser chromium
-python run_tests.py --browser firefox
-python run_tests.py --browser webkit
-
-# Headless mode
-python run_tests.py --headless
-python run_tests.py --browser firefox --headless
-```
-
 ### Advanced Combinations
 
 ```bash
@@ -320,7 +298,7 @@ reports/
 4. **Create reusable page methods** - Reduce code duplication
 
 --- 
-## Tag Filtering
+## 🏷️ Tag Filtering
 
 Available tags in the framework:
 
@@ -329,20 +307,9 @@ Available tags in the framework:
 - `@api` - API testing scenarios
 - `@performance` - Performance testing
 
-```bash
-# Single tag
-python run_tests.py --tags @smoke
-
-# Multiple tags (OR logic)
-python run_tests.py --tags @smoke @regression
-
-# Parallel with tags
-python run_tests.py --parallel --tags @api
-```
-
 ---
 
-### Code Organization
+## ⚙️ Code Organization
 
 1. **Keep step definitions focused**
    ```python
@@ -365,7 +332,7 @@ python run_tests.py --parallel --tags @api
 
 ---
 
-### Investigate Tracing
+## 🔍 Investigate Tracing
 ```bash
 # Install Playwright trace viewer
 npx playwright show-trace reports/traces/FILE_NAME.zip
@@ -375,7 +342,7 @@ npx playwright show-trace --host 0.0.0.0 --port 8080 reports/traces/FILE_NAME.zi
 ```
 ---
 
-### Log Files
+## 📄 Log Files
 
 Check log files for detailed error information:
 
