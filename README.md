@@ -124,7 +124,7 @@ sudo apt-get install allure
 
 ### 5. Configuration
 
-#### Set URL in `config.yaml`:
+#### Set URL in [Config.yaml](resources/config.yaml):
 
 ```yaml
 base_url: https://httpbin.org

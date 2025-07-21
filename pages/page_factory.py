@@ -1,25 +1,19 @@
-"""
-Page Factory for managing page objects.
-"""
-from .test_page import TestPage
 from .contact_form_page import ContactFormPage
+from .test_page import TestPage
+
 
 class PageFactory:
-    """Factory class for creating page objects."""
     
     @staticmethod
-    def get_test_page(page):
-        """Get TestPage instance."""
-        return TestPage(page)
+    def get_test_page(context):
+        return TestPage(context.page, context)
     
     @staticmethod
-    def get_contact_form_page(page):
-        """Get ContactFormPage instance."""
-        return ContactFormPage(page)
+    def get_contact_form_page(context):
+        return ContactFormPage(context.page, context)
     
     @staticmethod
-    def get_page(page_name: str, page):
-        """Get page object by name."""
+    def get_page(page_name: str, context):
         page_map = {
             'test': TestPage,
             'contact_form': ContactFormPage
@@ -28,4 +22,4 @@ class PageFactory:
         if page_name not in page_map:
             raise ValueError(f"Unknown page: {page_name}")
         
-        return page_map[page_name](page) 
+        return page_map[page_name](context.page, context)

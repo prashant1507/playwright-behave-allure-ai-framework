@@ -1,3 +1,4 @@
+from ai.selector_healer import AISelectorHealer
 from utils.logger import log_failure
 from utils.browser.browser import prepare_browser
 from utils.reporting import attach_screenshot
@@ -7,10 +8,14 @@ def before_all(context):
     prepare_browser(context)
     from pages.page_factory import PageFactory
     context.page_factory = PageFactory()
+    context.ai = AISelectorHealer()
 
 
 def after_all(context):
     context.browser_manager.stop()
+
+def before_step(context, step):
+    context.bdd_step = step.name
 
 
 def after_step(context, step):
