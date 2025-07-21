@@ -123,6 +123,9 @@ def fill_input(self, selector: str, value: str):
 - **📚 Continuous Learning**: Improves over time with historical data
 - **⚡ Faster Development**: Reduces debugging time for selector issues
 
+### Note
+- AI method is ready, requires user to adjust base_page.py functions
+
 ---
 
 ## ⚙️ Setup Guide

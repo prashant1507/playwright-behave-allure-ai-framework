@@ -11,14 +11,15 @@ from playwright.sync_api import Page
 
 from helpers.constants.framework_constants import SCREENSHOTS_DIR
 from utils.logger import log_info_emoji, log_error
+from utils.misc import load_config
 
 
 class AISelectorHealer:
 
-    def __init__(self, model="devstral:24b", selector_map_file="selector_map.json", log_file="selector_log.json"):
-        self.model = model
-        self.selector_map_file = selector_map_file
-        self.log_file = log_file
+    def __init__(self):
+        self.model = load_config()['ai_model']
+        self.selector_map_file = "selector_map.json"
+        self.log_file = "selector_log.json"
         self._load_selector_map()
 
     def _load_selector_map(self):
