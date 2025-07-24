@@ -2,12 +2,12 @@ from .base_page import BasePage
 
 class ContactFormPage(BasePage):
     URL = "forms/post"
-    CUSTOMER_NAME_INPUT = 'input[name="custnames"]'
-    CUSTOMER_PHONE_INPUT = 'input[name="custtel"]'
-    CUSTOMER_EMAIL_INPUT = 'input[name="custemail"]'
+    CUSTOMER_NAME_INPUT = 'input[name="custnames"]' # Correct is 'input[name="custname"]'
+    CUSTOMER_PHONE_INPUT = 'input[name="custtels"]' # Correct is 'input[name="custtel"]'
+    CUSTOMER_EMAIL_INPUT = 'input[name="custemailx"]' # Correct is 'input[name="custemail"]'
     PIZZA_SIZE_SELECT = 'input[name="size"]'
     TOPPING_CHECKBOX = 'input[name="topping"]'
-    DELIVERY_INSTRUCTION_INPUT = 'textarea[name="comments"]'
+    DELIVERY_INSTRUCTION_INPUT = 'textarea[name="commentss"]' # Correct is 'textarea[name="comments"]'
     SUBMIT_BUTTON = 'p > button'
     
     def navigate_to_contact_form(self, base_url: str):

@@ -5,13 +5,13 @@ import logging
 from utils.logger import log_info_emoji
 
 
-def ai_selector_healing(context, text):
+def ai_selector_healing(context, exception, original_selector=""):
     locator = ""
     log_info_emoji("⚠️ ", "Selector failed. Healing...")
     new_selector = context.ai.heal_selector(
-        original_selector=text,  # The raw text you're searching
-        label="Text",  # Semantic label (optional, helps AI)
-        context=context
+        context=context,
+        exception=exception,
+        original_selector=original_selector
     )
 
     try:
@@ -45,8 +45,8 @@ class BasePage:
         try:
             self.page.locator(selector).wait_for(timeout=5000)
             self.page.fill(selector, value)
-        except playwright.sync_api.TimeoutError:
-            locator = ai_selector_healing(context=self.context, text=selector)
+        except playwright.sync_api.TimeoutError as e:
+            locator = ai_selector_healing(context=self.context, original_selector=selector, exception=str(e))
             locator.fill(value)
 
     
