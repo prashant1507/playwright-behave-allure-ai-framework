@@ -11,7 +11,7 @@ A powerful, scalable automation framework combining **Playwright** for browser a
 ## 🚀 Quick Start
 
 ```bash
-# Clone and setup
+# Clone and set up
 git clone https://github.com/prashant1507/playwright-behave-allure-framework.git
 cd playwright-behave-allure-framework/
 
@@ -19,7 +19,7 @@ cd playwright-behave-allure-framework/
 pip install -r requirements.txt
 playwright install
 
-# Install node for checking tracing
+# Install Node for checking tracing
 brew install node
 
 # Run your first test
@@ -87,7 +87,7 @@ The framework includes an intelligent **AI-powered selector healing system** tha
 
 ### How It Works
 
-1. **Automatic Detection**: When a selector fails (throws exception), the system automatically triggers AI healing
+1. **Automatic Detection**: When a selector fails (throws an exception), the system automatically triggers AI healing
 2. **Context Capture**: Captures current page screenshot and HTML content
 3. **AI Analysis**: Uses Ollama (`devstral:24b` model) to analyze the page and suggest new selectors
 4. **Validation**: Validates AI-suggested selectors before using them
@@ -124,7 +124,8 @@ def fill_input(self, selector: str, value: str):
 - **⚡ Faster Development**: Reduces debugging time for selector issues
 
 ### Notes
-- AI method is ready, requires user to adjust base_page.py functions
+- The AI method is ready, and requires the user to adjust base_page.py functions
+- Use the @ai_healing tag to see AI in action
 
 ---
 
@@ -140,7 +141,7 @@ def fill_input(self, selector: str, value: str):
 ### 2. Environment Setup
 
 ```
-# Create virtual environment
+# Create a virtual environment
 python -m venv venv
 
 # Activate virtual environment
@@ -244,7 +245,7 @@ python run_tests.py --parallel
 ### Advanced Combinations
 
 ```bash
-# Parallel execution with specific browser and headless mode
+# Parallel execution with a specific browser and headless mode
 python run_tests.py --parallel --browser firefox --headless --workers 4
 
 # Run specific tags with custom configuration
@@ -261,10 +262,10 @@ python run_tests.py --tags @smoke --serve-report
 ### Allure Reports
 
 ```bash
-# Generate and serve report
+# Generate and serve a report
 python run_tests.py --tags @smoke --serve-report
 
-# Or manually serve existing report
+# Or manually serve the existing report
 allure serve reports/allure-results
 ```
 
