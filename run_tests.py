@@ -160,15 +160,19 @@ def run_behave_command(args):
         for tag in args.tags:
             cmd.extend(['-t', tag])
 
-    # Run the command and capture output
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    filtered_output = []
-    for line in result.stdout.split('\n'):
-        if line.strip():
-            filtered_output.append(line)
-
-    if filtered_output:
-        log_info('\n'.join(filtered_output))
+    # Run the command with live output streaming
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
+    output_lines = []
+    for line in process.stdout:
+        if not line.strip():
+            continue
+        output_lines.append(line)
+        log_info(line.rstrip())
+    
+    exit_code = process.wait(timeout=600)
+    
+    # Create a result object similar to subprocess.run
+    result = type('Result', (), {'returncode': exit_code, 'stdout': '\n'.join(output_lines)})()
 
     return result
 
