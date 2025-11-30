@@ -16,8 +16,11 @@ git clone https://github.com/prashant1507/playwright-behave-allure-framework.git
 cd playwright-behave-allure-framework/
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r resources/requirements.txt
 playwright install
+
+# Install LLM model
+olama pull devstral:24b
 
 # Install Node for checking tracing
 brew install node
